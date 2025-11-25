@@ -13,14 +13,20 @@ RUN docker-php-ext-install pdo pdo_pgsql
 # 4. Instalar o Composer (Gerenciador do Laravel)
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
-# 5. Definir a pasta de trabalho dentro do servidor
+# 5. Definir a pasta de trabalho
 WORKDIR /var/www
 
-# 6. Copiar os arquivos da pasta '1_api' para dentro do servidor
+# 6. Copiar os arquivos da API
 COPY 1_api .
 
-# 7. Instalar as dependências do Laravel
+# 7. Copiar o nosso script de inicialização (NOVO!)
+COPY entrypoint.sh .
+
+# 8. Instalar dependências
 RUN composer install --no-dev --optimize-autoloader
 
-# 8. Comando para ligar o servidor quando o site for para o ar
-CMD bash -c "php artisan migrate --force && php artisan serve --host=0.0.0.0 --port=$PORT"
+# 9. Dar permissão para o script rodar (NOVO!)
+RUN chmod +x entrypoint.sh
+
+# 10. Executar o script
+CMD ["./entrypoint.sh"]
