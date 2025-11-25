@@ -23,4 +23,4 @@ COPY 1_api .
 RUN composer install --no-dev --optimize-autoloader
 
 # 8. Comando para ligar o servidor quando o site for para o ar
-CMD php artisan serve --host=0.0.0.0 --port=$PORT
+CMD bash -c "php artisan migrate --force && php artisan serve --host=0.0.0.0 --port=$PORT"
