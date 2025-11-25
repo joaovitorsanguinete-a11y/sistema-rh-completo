@@ -5,7 +5,7 @@ return [
     'allowed_methods' => ['*'],
 
     // AQUI ESTÁ O SEGREDO: Permitimos o endereço do seu React
-    'allowed_origins' => ['http://localhost:3000'],
+    'allowed_origins' => ['*'],
     'allowed_origins_patterns' => [],
     'allowed_headers' => ['*'],
     'exposed_headers' => [],
