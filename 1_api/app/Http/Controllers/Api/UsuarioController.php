@@ -7,7 +7,7 @@ use App\Models\Usuario; // 1. Importamos o Model
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule; // Para validação
 use Illuminate\Validation\Rules\Password; // Para regras de senha forte
-use Laravel\Sanctum\HasApiTokens;
+
 
 class UsuarioController extends Controller
 {
